@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+    <head>
+        <!--Titulo padrão da página-->
+        <title>MorgPhotos</title>
+        <!--Codificação e configurações da página para tratamento no navegador-->
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="description" content="">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+        <meta name="theme-color" content="#125688">
+
+        <!--Folhas de estilos usados na página-->
+        <!--Folha de estilo do angular material-->
+        <link rel="stylesheet" href="./bower_components/angular-material/angular-material.min.css"/>
+
+        <!--Folha de estilo de animação do Angular-->
+        <link rel="stylesheet" href="assets/css/animate.css"/>
+
+        <!--Folha de estilo de layout do Angular Material-->
+        <link rel="stylesheet" href="./bower_components/angular-material/angular-material.layouts.min.css"/>
+
+        <!--Folha de estilo da Fonte roboto-->
+        <link rel='stylesheet' href='./bower_components/roboto-fontface/css/roboto-fontface.css'>
+
+        <!--Dolha de estilo dos icones material design-->
+        <link rel='stylesheet' href='./bower_components/angular-material-icons/angular-material-icons.css'>
+
+        <!--Folha de estilo do aplicativo-->
+        <link rel="stylesheet" href="./assets/css/app.css"/>
+
+    </head>
+
+    <!--Instanciando modulo do Angular-->
+    <body ng-app="InstaMaterial" layout="row" ng-cloak>
+
+        <!--Carregando barra lateral-->
+        <md-sidenav ng-if="currentPatch != '/login'"
+                    layout="column" class="md-sidenav-right md-whiteframe-z1"
+                    md-component-id="right" side-bar></md-sidenav>
+
+        <div layout="column" layout-fill>
+            <!--Carregando menu de navegação-->
+            <md-toolbar ng-if="currentPatch != '/login'"
+                        md-scroll-shrink class="md-whiteframe-z2" nav-menu></md-toolbar>
+
+            <md-content flex>
+                <!--Carregando view responsável pela rota acessada-->
+                <div ng-view></div>
+            </md-content>
+        </div>
+
+        <!--Carregar o Angular-->
+        <script src="./bower_components/angular/angular.min.js"></script>
+
+        <!-- Dependencias do Angular -->
+        <!--Acessibilidade com AngularJS-->
+        <script src="./bower_components/angular-aria/angular-aria.min.js"></script>
+
+        <!--Gerenciamento de Rotas com Angular-->
+        <script src="./bower_components/angular-route/angular-route.min.js"></script>
+
+        <!--Animações CSS com AngularJS-->
+        <script src="./bower_components/angular-animate/angular-animate.min.js"></script>
+
+        <!--Padronização de Região para o Brasil-->
+        <script src="./bower_components/angular-i18n/angular-locale_pt-br.js"></script>
+
+        <!--Biblioteca do Material Anular-->
+        <script src="./bower_components/angular-material/angular-material.min.js"></script>
+
+        <!--Icones do Material Designer-->
+        <script src="./bower_components/angular-material-icons/angular-material-icons.min.js"></script>
+
+        <!--Carregar Modulos-->
+        <script src="./app/app.module.js"></script>
+
+        <!--Configurações de Rotas-->
+        <script src="./app/app.router.js"></script>
+
+        <!--Configurações de CORS-->
+        <script src="./app/app.cors.js"></script>
+
+        <!--Configurações de Inicalização-->
+        <script src="./app/app.run.js"></script>
+
+        <!--Configurações de Tema-->
+        <script src="./app/app.theme.js"></script>
+
+        <!--Lista de Diretivas Usadas-->
+        <!--Diretiva sideBar-->
+        <script src="./app/shared/sideBar/sideBar.js"></script>
+
+        <!--Diretiva navMenu-->
+        <script src="./app/shared/navMenu/navMenu.js"></script>
+
+        <!--Core service-->
+        <script src="./app/components/core/coreService.js"></script>
+
+        <!--Controller da Home-->
+        <script src="./app/components/home/homeController.js"></script>
+
+        <!--Controller da Login-->
+        <script src="./app/components/login/loginController.js"></script>
+
+    </body>
+
+</html>

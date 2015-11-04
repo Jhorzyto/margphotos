@@ -1,0 +1,1 @@
+var margPhotos = angular.module( 'InstaMaterial', [ 'ngRoute', 'ngMaterial', 'ngMdIcons', 'ngAnimate' ] );
