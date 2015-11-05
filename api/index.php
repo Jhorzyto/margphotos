@@ -24,7 +24,7 @@ try{
     if( $logado && isset( $_GET['feed'] ) ){
 
         $instagram->setAccessToken( $sess->get( 'instagram_data' ) );
-        $data = is_numeric( $_GET['feed'] ) ? $instagram->getUserFeed( $_GET['feed'] ) : $instagram->getUserFeed( 50 );
+        $data = is_numeric( $_GET['feed'] ) ? $instagram->getUserFeed( (int) $_GET['feed'] ) : $instagram->getUserFeed( 50 );
 
         echo json_encode( [ "error" => false, "login" => false, "data" => $data ]);
 

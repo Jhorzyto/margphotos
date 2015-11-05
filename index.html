@@ -36,7 +36,7 @@
     <body ng-app="InstaMaterial" layout="row" ng-cloak>
 
         <!--Carregando barra lateral-->
-        <md-sidenav ng-if="currentPatch != '/login'"
+        <md-sidenav ng-if="!isLoginPage"
                     layout="column" class="md-sidenav-right md-whiteframe-z1"
                     md-component-id="right" side-bar></md-sidenav>
 
@@ -86,6 +86,9 @@
 
         <!--Configurações de Tema-->
         <script src="./app/app.theme.js"></script>
+
+        <!--Configurações de Filtros-->
+        <script src="./app/app.filters.js"></script>
 
         <!--Lista de Diretivas Usadas-->
         <!--Diretiva sideBar-->

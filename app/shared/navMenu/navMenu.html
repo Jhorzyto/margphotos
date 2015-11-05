@@ -4,7 +4,10 @@
 
     <span flex></span>
 
-    <md-button class="md-icon-button" ng-click="openMenu()" aria-label="Notifications">
-        <ng-md-icon icon="notifications_none" ng-class="{notification : true}"></ng-md-icon>
+    <md-button ng-if="!userData.login"
+               class="md-icon-button"
+               ng-click="logoff()"
+               aria-label="Logoff">
+        <ng-md-icon icon="logout"></ng-md-icon>
     </md-button>
 </div>

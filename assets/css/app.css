@@ -29,7 +29,7 @@
     -moz-transform:scale(0.70);
 }
 
-.logo{	
+.logo{
 	font-family: "billabongregular", Arial, sans-serif;
 	color: #fffefc;
 	-webkit-text-shadow: 1px 1px 6px rgba(0, 0, 0, 1);
@@ -52,10 +52,15 @@ md-content.md-default-theme, md-content{
 }
 
 .infoPhotoText{
-    padding: 0 10px;
     font-style: italic;
     font-size: 14px;
+    text-align: justify;
 }
+
+.md-actions{
+    padding: 0 10px;
+}
+
 .loginButton {
     font-size: 1.2em;
     font-family: sans-serif;

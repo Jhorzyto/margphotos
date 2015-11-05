@@ -13,8 +13,9 @@ margPhotos.service( 'CoreService', function ( $http, urlApi, $location, $rootSco
 
     this.changeTitlePage = page.title.changeTitle;
 
-    this.getInformation = function( success, error ){
-        $http.get( urlApi ).then( success, error );
+    this.getInformation = function( config, success, error ){
+        config = angular.isDefined( config ) && angular.isObject( config ) ? config : {};
+        $http.get( urlApi, config ).then( success, error );
     };
 
     this.goTo = function( address, external ){
@@ -44,7 +45,7 @@ margPhotos.service( 'CoreService', function ( $http, urlApi, $location, $rootSco
     };
 
     this.getUserData = function(){
-        return angular.isDefined( $rootScope.userData ) ? $rootScope.userData : null;
+        return angular.isDefined( $rootScope.userData ) ? $rootScope.userData : { login : true };
     };
 
     this.processResponse = function( response, callback ){

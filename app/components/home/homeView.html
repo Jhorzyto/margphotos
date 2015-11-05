@@ -1,40 +1,85 @@
-<md-subheader class="md-primary">Unread Messages</md-subheader>
-
-<md-card>
+<md-card ng-repeat="post in feedData | orderBy: '-created_time' track by post.id">
 
     <md-list-item class="md-2-line">
-        <img src="https://igcdn-photos-d-a.akamaihd.net/hphotos-ak-xfa1/t51.2885-19/s150x150/11881703_888197541277195_1208170298_a.jpg" class="md-avatar" alt="asdasdsa" />
+        <img ng-src="{{post.user.profile_picture}}" class="md-avatar" alt="asdasdsa" />
+
         <div class="md-list-item-text">
-            <h3>BláBláBlá</h3>
-            <p class="infoPhoto">3 min</p>
-            <ng-md-icon class="md-icon-button md-secondary" style="fill: grey" icon="more_vert"></ng-md-icon>
+
+            <h3>{{post.user.username}}</h3>
+
+            <p class="infoPhoto">{{post.created_time | timeago}}</p>
+
+            <ng-md-icon class="md-icon-button md-secondary"
+                        ng-click="post.images.thumbnail = post.images.standard_resolution"
+                        style="fill: grey"
+                        icon="compare"></ng-md-icon>
+
         </div>
+
     </md-list-item>
 
-    <img src="https://material.angularjs.org/latest/img/washedout.png" class="md-card-image" alt="Washed Out">
+    <img ng-src="{{post.images.thumbnail.url}}"
+         md-swipe-left="post.images.thumbnail = post.images.standard_resolution"
+         md-swipe-right="post.user_has_liked = true;  post.likes.count = post.likes.count + 1"
+         class="md-card-image"
+         alt="{{post.user.text}}">
 
-    <div class="md-actions">
+    <div class="md-actions" ng-init="post.count_user_in_photo = post.users_in_photo.length">
+
         <p class="infoPhotoText">
-            The titles of Washed Out's breakthrough song and the first single from Paracosm share the
+            {{post.caption.text}}
         </p>
 
         <div layout="row" layout-align="start start">
-            <md-button class="md-icon-button md-warn" aria-label="Favorite">
-                <ng-md-icon icon="favorite"></ng-md-icon>
-                3
+
+            <md-button class="md-icon-button md-warn"
+                       ng-click="post.user_has_liked = true; post.likes.count = post.likes.count + 1"
+                       style="width: auto"
+                       aria-label="Like">
+
+                <ng-md-icon icon="favorite"
+                            ng-class="{ notification : post.user_has_liked }">
+                </ng-md-icon>
+
+                {{ post.likes.count ? ( post.likes.count | megaNumber ): '' }}
+
             </md-button>
-            <md-button class="md-icon-button md-warn" aria-label="Favorite">
+
+            <md-button class="md-icon-button md-warn"
+                       style="width: auto"
+                       aria-label="Comment">
+
                 <ng-md-icon icon="comment"></ng-md-icon>
-                3
+
+                {{ post.comments.count ? ( post.comments.count | megaNumber ) : '' }}
+
             </md-button>
-            <md-button class="md-icon-button md-warn" aria-label="Favorite">
+
+            <md-button ng-if="post.count_user_in_photo"
+                       class="md-icon-button md-warn"
+                       aria-label="Users">
+
                 <ng-md-icon icon="group"></ng-md-icon>
-                3
+
+                {{post.count_user_in_photo}}
+
             </md-button>
-            <md-button class="md-icon-button md-warn" aria-label="Favorite">
-                <ng-md-icon icon="share"></ng-md-icon>
-            </md-button>
+
+            <a ng-href="{{post.link}}" target="_blank">
+
+                <md-button class="md-icon-button md-warn"
+                           style="width: auto"
+                           aria-label="Share">
+                    <ng-md-icon icon="share"></ng-md-icon>
+
+                </md-button>
+
+            </a>
+
         </div>
+
     </div>
 
 </md-card>
+
+Obrigado por testar! <a href="https://github.com/Jhorzyto">Jhordan Lima</a>
