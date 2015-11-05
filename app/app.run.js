@@ -1,21 +1,16 @@
-margPhotos.run ( function( $rootScope, CoreService ) {
+margPhotos.run ( function( CoreService ) {
 
-    $rootScope.page = {};
-    $rootScope.page.title = {
-        titleText: angular.element( document.querySelector( 'title' ) ).text,
-        changeTitle: function ( newTitle ) {
-            if ( angular.isString( newTitle ) ) angular.element( document.querySelector( 'title' ) ).html( newTitle );
-        }
-    };
-
-    $rootScope.currentPatch = CoreService.getCurrentPath();
+    CoreService.goTo('/');
 
     CoreService.getInformation( function( response ){
-        $rootScope.userData = response.data;
-        console.log($rootScope.userData);
-        CoreService.validateLogin( response.data, true );
+        CoreService.processResponse( response, function( data ){
+            CoreService.validateLogin( data, true );
+            CoreService.setUserData( data );
+        });
     }, function( response ){
-        CoreService.validateLogin( response.data );
+        CoreService.processResponse( response, function( data ){
+            CoreService.validateLogin( data );
+        });
     });
 
 });

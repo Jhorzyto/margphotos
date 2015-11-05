@@ -1,8 +1,5 @@
-margPhotos.controller( 'LoginController', function ( $scope, $rootScope, $location ) {
-    $rootScope.page.title.changeTitle("Login - MargPhotos");
+margPhotos.controller( 'LoginController', function ( $scope, CoreService ) {
+    CoreService.changeTitlePage("Login - MargPhotos");
     $scope.teste = "LoginController";
-    $scope.autenticar = function(){
-        console.log("chegou!");
-        $location.url( $rootScope.userData.data );
-    };
+    $scope.urlLogin = CoreService.getUserData().data;
 });

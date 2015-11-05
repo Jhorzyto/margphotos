@@ -1,11 +1,6 @@
 <div layout="column" ng-cloak>
-    <md-toolbar class="">
-        <div class="md-toolbar-tools">
-            <h3 class="logo">MargPhotos</h3>
-        </div>
-    </md-toolbar>
     <md-content ng-if="userData.data" flex layout-padding>
         <p>Para acessar o Instagram através do MargPhotos, é necessário fazer o login de sua conta do instagram clicando abaixo. </p>
-        <button ng-click="autenticar()" class="loginButton">Entrar com Instagram</button>
+        <a ng-href="{{urlLogin}}" class="loginButton">Entrar com Instagram</a>
     </md-content>
 </div>
