@@ -33,21 +33,22 @@
     </head>
 
     <!--Instanciando modulo do Angular-->
-    <body ng-app="InstaMaterial" layout="row" ng-cloak>
+    <body ng-app="InstaMaterial" layout="row" flex="grow" ng-cloak>
 
         <!--Carregando barra lateral-->
         <md-sidenav ng-if="!isLoginPage"
                     layout="column" class="md-sidenav-right md-whiteframe-z1"
                     md-component-id="right" side-bar></md-sidenav>
 
-        <div layout="column" layout-fill>
+        <div layout="column" flex="grow">
             <!--Carregando menu de navegação-->
             <md-toolbar md-scroll-shrink class="md-whiteframe-z2" nav-menu></md-toolbar>
 
-            <md-content flex>
+            <md-content flex="grow">
                 <!--Carregando view responsável pela rota acessada-->
                 <div ng-view></div>
             </md-content>
+
         </div>
 
         <!--Carregar o Angular-->

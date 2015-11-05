@@ -1,4 +1,7 @@
-<md-card ng-repeat="post in feedData | orderBy: '-created_time' track by post.id">
+<div layout="row" layout-align="space-around center" layout-wrap>
+
+    <md-card ng-repeat="post in feedData | orderBy: '-created_time' track by post.id"
+         flex-gt-md="30" flex="100">
 
     <md-list-item class="md-2-line">
         <img ng-src="{{post.user.profile_picture}}" class="md-avatar" alt="asdasdsa" />
@@ -81,5 +84,5 @@
     </div>
 
 </md-card>
-
+</div>
 Obrigado por testar! <a href="https://github.com/Jhorzyto">Jhordan Lima</a>
