@@ -1,88 +1,92 @@
 <div layout="row" layout-align="space-around center" layout-wrap>
 
     <md-card ng-repeat="post in feedData | orderBy: '-created_time' track by post.id"
-         flex-gt-md="30" flex="100">
+             ng-init="initPost( post )"
+             flex-gt-md="30" flex="100">
 
-    <md-list-item class="md-2-line">
-        <img ng-src="{{post.user.profile_picture}}" class="md-avatar" alt="asdasdsa" />
+        <md-list-item class="md-2-line">
 
-        <div class="md-list-item-text">
+            <img ng-src="{{post.user.profile_picture}}" class="md-avatar" alt="{{post.user.full_name}}" />
 
-            <h3>{{post.user.username}}</h3>
+            <div class="md-list-item-text">
 
-            <p class="infoPhoto">{{post.created_time | timeago}}</p>
+                <h3>{{post.user.username}}</h3>
 
-            <ng-md-icon class="md-icon-button md-secondary"
-                        ng-click="post.images.thumbnail = post.images.standard_resolution"
-                        style="fill: grey"
-                        icon="compare"></ng-md-icon>
+                <p class="infoPhoto">{{post.created_time | timeago}}</p>
 
+                <ng-md-icon class="md-icon-button md-secondary"
+                            style="fill: grey" icon="compare"
+                            ng-click="improveImage( post )"></ng-md-icon>
+
+            </div>
+
+        </md-list-item>
+
+        <div ng-class="effectsImage( post.effect )">
+            <img ng-src="{{post.current_images.url}}"
+                 md-swipe-left="improveImage( post )"
+                 md-swipe-right="likeImage( post )"
+                 ng-click="doubleClickImage( post )"
+                 class="md-card-image"
+                 alt="{{post.user.text}}">
         </div>
 
-    </md-list-item>
+        <div class="md-actions">
 
-    <img ng-src="{{post.images.thumbnail.url}}"
-         md-swipe-left="post.images.thumbnail = post.images.standard_resolution"
-         md-swipe-right="post.user_has_liked = true;  post.likes.count = post.likes.count + 1"
-         class="md-card-image"
-         alt="{{post.user.text}}">
+            <p class="infoPhotoText">
+                {{post.caption.text}}
+            </p>
 
-    <div class="md-actions" ng-init="post.count_user_in_photo = post.users_in_photo.length">
-
-        <p class="infoPhotoText">
-            {{post.caption.text}}
-        </p>
-
-        <div layout="row" layout-align="start start">
-
-            <md-button class="md-icon-button md-warn"
-                       ng-click="post.user_has_liked = true; post.likes.count = post.likes.count + 1"
-                       style="width: auto"
-                       aria-label="Like">
-
-                <ng-md-icon icon="favorite"
-                            ng-class="{ notification : post.user_has_liked }">
-                </ng-md-icon>
-
-                {{ post.likes.count ? ( post.likes.count | megaNumber ): '' }}
-
-            </md-button>
-
-            <md-button class="md-icon-button md-warn"
-                       style="width: auto"
-                       aria-label="Comment">
-
-                <ng-md-icon icon="comment"></ng-md-icon>
-
-                {{ post.comments.count ? ( post.comments.count | megaNumber ) : '' }}
-
-            </md-button>
-
-            <md-button ng-if="post.count_user_in_photo"
-                       class="md-icon-button md-warn"
-                       aria-label="Users">
-
-                <ng-md-icon icon="group"></ng-md-icon>
-
-                {{post.count_user_in_photo}}
-
-            </md-button>
-
-            <a ng-href="{{post.link}}" target="_blank">
+            <div layout="row" layout-align="start start">
 
                 <md-button class="md-icon-button md-warn"
+                           ng-click="likeImage( post )"
                            style="width: auto"
-                           aria-label="Share">
-                    <ng-md-icon icon="share"></ng-md-icon>
+                           aria-label="Like">
+
+                    <ng-md-icon icon="favorite"
+                                ng-class="effectsButtonLike( post )">
+                    </ng-md-icon>
+
+                    {{ post.likes.count ? ( post.likes.count | megaNumber ): '' }}
 
                 </md-button>
 
-            </a>
+                <md-button class="md-icon-button md-warn"
+                           style="width: auto"
+                           aria-label="Comment">
+
+                    <ng-md-icon icon="comment"></ng-md-icon>
+
+                    {{ post.comments.count ? ( post.comments.count | megaNumber ) : '' }}
+
+                </md-button>
+
+                <md-button ng-if="post.count_user_in_photo"
+                           class="md-icon-button md-warn"
+                           aria-label="Users">
+
+                    <ng-md-icon icon="group"></ng-md-icon>
+
+                    {{post.count_user_in_photo}}
+
+                </md-button>
+
+                <a ng-href="{{post.link}}" target="_blank">
+
+                    <md-button class="md-icon-button md-warn"
+                               style="width: auto"
+                               aria-label="Share">
+                        <ng-md-icon icon="share"></ng-md-icon>
+
+                    </md-button>
+                </a>
+
+            </div>
 
         </div>
 
-    </div>
+    </md-card>
 
-</md-card>
 </div>
 Obrigado por testar! <a href="https://github.com/Jhorzyto">Jhordan Lima</a>

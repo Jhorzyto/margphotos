@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# 2015-11-06:12
+# 2015-11-09:12
 
 # Arquivos para cache.
 CACHE:
@@ -15,6 +15,7 @@ index.html
 ./app/images/touch/apple-touch-icon.png
 ./bower_components/angular-material/angular-material.min.css
 ./bower_components/angular-material/angular-material.layouts.min.css
+./bower_components/animate.css/animate.min.css
 ./assets/css/animate.css
 ./assets/css/app.css
 ./bower_components/angular-material-icons/angular-material-icons.css
@@ -25,6 +26,7 @@ index.html
 ./bower_components/angular-animate/angular-animate.min.js
 ./bower_components/angular-aria/angular-aria.min.js
 ./bower_components/roboto-fontface/fonts/Roboto-Medium.woff2
+./bower_components/roboto-fontface/fonts/Roboto-RegularItalic.woff2
 ./bower_components/angular-route/angular-route.min.js
 ./app/shared/sideBar/sideBar.js
 ./app/app.module.js
@@ -40,6 +42,7 @@ index.html
 ./app/shared/navMenu/navMenu.js
 ./app/app.router.js
 ./app/app.theme.js
+./assets/img/heartLike.png
 
 # Não salvar como cache.
 NETWORK:
