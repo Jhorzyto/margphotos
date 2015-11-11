@@ -1,3 +1,7 @@
+*:focus {
+    outline: 0;
+}
+
 @font-face {
     font-family: 'billabongregular';
     src: url('../fonts/billabong-webfont.eot');
@@ -55,6 +59,8 @@ md-content.md-default-theme, md-content{
     font-style: italic;
     font-size: 14px;
     text-align: justify;
+    display: inline-block;
+    word-break: break-word;
 }
 
 .md-actions{

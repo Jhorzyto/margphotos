@@ -25,5 +25,6 @@ try {
     header("location:{$url}");
 
 } catch ( Exception $e ){
+	error_log( $e->getMessage(), 0 );
     header("location:{$url}");
 }
