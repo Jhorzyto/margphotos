@@ -1,4 +1,4 @@
-margPhotos.config( function( $mdThemingProvider ) {
+margPhotos.config(['$mdThemingProvider', function( $mdThemingProvider ) {
 
 	$mdThemingProvider.definePalette('instagramPalettePrimary', {
 		'50': '125788',
@@ -45,4 +45,4 @@ margPhotos.config( function( $mdThemingProvider ) {
                       //.accentPalette('deep-orange')
                       .accentPalette('instagramPaletteAccent', {'default': '500'})
                       .warnPalette('grey');
-});
+}]);

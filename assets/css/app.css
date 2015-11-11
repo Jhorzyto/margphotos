@@ -1,7 +1,3 @@
-*:focus {
-    outline: 0;
-}
-
 @font-face {
     font-family: 'billabongregular';
     src: url('../fonts/billabong-webfont.eot');
@@ -15,6 +11,18 @@
 
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
     display: none !important;
+}
+
+object[type='application/gas-events-uni'] {
+    display: none;
+}
+
+*:focus {
+    outline: 0;
+}
+
+.container{
+    overflow-y: hidden;
 }
 
 .avatar {
@@ -60,7 +68,7 @@ md-content.md-default-theme, md-content{
     font-size: 14px;
     text-align: justify;
     display: inline-block;
-    word-break: break-word;
+    word-break: break-all;
 }
 
 .md-actions{

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="pt-BR" manifest="margphotos.appcache">
+<!--manifest="margphotos.appcache"-->
+<html lang="pt-BR">
 
     <head>
         <!--Codificação e configurações da página para tratamento no navegador-->
@@ -20,7 +21,7 @@
 
         <!-- Add to homescreen for Safari on iOS -->
         <meta name="apple-mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="apple-mobile-web-app-status-bar-style" content="default">
         <meta name="apple-mobile-web-app-title" content="MargPhotos">
         <link rel="apple-touch-icon" href="./app/images/touch/apple-touch-icon.png">
 
@@ -55,18 +56,18 @@
     </head>
 
     <!--Instanciando modulo do Angular-->
-    <body ng-app="InstaMaterial" layout="row" flex="grow" ng-cloak>
+    <body ng-app="InstaMaterial" layout="row" ng-cloak>
 
         <!--Carregando barra lateral-->
         <md-sidenav ng-if="!isLoginPage"
-                    layout="column" class="md-sidenav-right md-whiteframe-z1"
+                    class="md-sidenav-right md-whiteframe-z1"
                     md-component-id="right" side-bar></md-sidenav>
 
-        <div layout="column" flex="grow">
+        <div layout="column" class="container" flex-grow>
             <!--Carregando menu de navegação-->
             <md-toolbar md-scroll-shrink class="md-whiteframe-z2" nav-menu></md-toolbar>
 
-            <md-content flex="grow">
+            <md-content flex>
                 <!--Carregando view responsável pela rota acessada-->
                 <div ng-view></div>
             </md-content>
@@ -113,6 +114,9 @@
         <!--Configurações de Filtros-->
         <script src="./app/app.filters.js"></script>
 
+        <!--Diretivas-->
+        <script src="./app/app.directive.js"></script>
+
         <!--Lista de Diretivas Usadas-->
         <!--Diretiva sideBar-->
         <script src="./app/shared/sideBar/sideBar.js"></script>
@@ -122,6 +126,9 @@
 
         <!--Core service-->
         <script src="./app/components/core/coreService.js"></script>
+
+        <!--Core service-->
+        <script src="./app/components/core/coreController.js"></script>
 
         <!--Controller da Home-->
         <script src="./app/components/home/homeController.js"></script>

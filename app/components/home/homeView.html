@@ -1,8 +1,11 @@
 <div layout="row" layout-align="space-around center" layout-wrap>
 
+    <md-progress-circular ng-if="!feedData"
+                          class="md-accent" md-mode="indeterminate"></md-progress-circular>
+
     <md-card ng-repeat="post in feedData | orderBy: '-created_time' track by post.id"
              ng-init="initPost( post )"
-             flex-gt-md="30" flex="100">
+             flex-gt-md="45" flex-gt-lg="30" flex="100">
 
         <md-list-item class="md-2-line">
 
@@ -22,13 +25,30 @@
 
         </md-list-item>
 
-        <div ng-class="effectsImage( post.effect )">
+        <div layout="row" layout-align="space-around center"
+             ng-if="!post.imageLoaded.status && !post.imageLoaded.error">
+            <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+        </div>
+
+        <div layout="row" layout-align="space-around center"
+             ng-if="post.imageLoaded.error">
+            <p class="infoPhotoText">
+                Não foi possível carregar a imagem!
+            </p>
+
+            <md-divider></md-divider>
+
+        </div>
+
+        <div ng-class="effectsImage( post.effect )" ng-show="post.imageLoaded.status">
+
             <img ng-src="{{post.current_images.url}}"
                  md-swipe-left="improveImage( post )"
                  md-swipe-right="likeImage( post )"
                  ng-click="doubleClickImage( post )"
                  class="md-card-image"
-                 alt="{{post.user.text}}">
+                 alt="{{post.user.text}}"
+                 load-photo >
         </div>
 
         <div class="md-actions">
@@ -51,6 +71,8 @@
                     {{ post.likes.count ? ( post.likes.count | megaNumber ): '' }}
 
                 </md-button>
+
+                <span flex></span>
 
                 <md-button class="md-icon-button md-warn"
                            style="width: auto"
@@ -89,4 +111,3 @@
     </md-card>
 
 </div>
-Obrigado por testar! <a href="https://github.com/Jhorzyto">Jhordan Lima</a>

@@ -32,6 +32,7 @@ margPhotos.controller( 'HomeController', function ( $scope, CoreService, $timeou
         data.count_user_in_photo = data.users_in_photo.length;
         data.effect = { improveImage : false, like: false, comment: false };
         data.countDoubleClick = 0;
+        data.imageLoaded = { status : false, error : false };
     };
 
     $scope.improveImage = function( data ){
