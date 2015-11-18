@@ -2,7 +2,7 @@
  * Angular Material Design
  * https://github.com/angular/material
  * @license MIT
- * v1.0.0-rc2-master-3b835ca
+ * v1.0.0-rc4-master-2ab1d2d
  */
 html, body {
   height: 100%;
@@ -5175,6 +5175,11 @@ md-autocomplete {
       position: absolute;
       bottom: -2px;
       left: 0; }
+      md-autocomplete md-autocomplete-wrap md-progress-linear.md-inline {
+        bottom: 40px;
+        right: 2px;
+        left: 2px;
+        width: auto; }
       md-autocomplete md-autocomplete-wrap md-progress-linear .md-mode-indeterminate {
         position: absolute;
         top: 0;
@@ -5602,6 +5607,8 @@ button.md-button::-moz-focus-inner {
       line-height: 40px;
       width: 40px;
       height: 40px; }
+    .md-button.md-fab.ng-hide, .md-button.md-fab.ng-leave {
+      transition: none; }
   .md-button:not([disabled]).md-raised.md-focused, .md-button:not([disabled]).md-fab.md-focused {
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26); }
   .md-button:not([disabled]).md-raised:active, .md-button:not([disabled]).md-fab:active {
@@ -6115,7 +6122,9 @@ md-calendar {
 /** Styles for mdDatepicker. */
 md-datepicker {
   white-space: nowrap;
-  overflow: hidden; }
+  overflow: hidden;
+  padding-right: 18px;
+  margin-right: -18px; }
 
 .md-inline-form md-datepicker {
   margin-top: 8px; }
@@ -6768,13 +6777,18 @@ md-input-container {
     position: absolute;
     right: 2px;
     bottom: 7px; }
+  md-input-container.md-input-invalid ng-messages, md-input-container.md-input-invalid data-ng-messages, md-input-container.md-input-invalid x-ng-messages, md-input-container.md-input-invalid [ng-messages], md-input-container.md-input-invalid [data-ng-messages], md-input-container.md-input-invalid [x-ng-messages] {
+    opacity: 1; }
   md-input-container ng-messages, md-input-container data-ng-messages, md-input-container x-ng-messages, md-input-container [ng-messages], md-input-container [data-ng-messages], md-input-container [x-ng-messages] {
     position: relative;
     -webkit-order: 4;
         -ms-flex-order: 4;
             order: 4;
     min-height: 24px;
-    overflow: hidden; }
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition-duration: 0.26667s;
+    opacity: 0; }
     md-input-container ng-messages .md-char-counter, md-input-container data-ng-messages .md-char-counter, md-input-container x-ng-messages .md-char-counter, md-input-container [ng-messages] .md-char-counter, md-input-container [data-ng-messages] .md-char-counter, md-input-container [x-ng-messages] .md-char-counter {
       position: absolute;
       top: 0;
@@ -6872,7 +6886,10 @@ md-list-item {
               flex-direction: inherit;
       -webkit-align-items: inherit;
           -ms-flex-align: inherit;
-              align-items: inherit; }
+              align-items: inherit;
+      border-radius: 0; }
+      md-list-item.md-no-proxy.md-button > .md-ripple-container, md-list-item .md-no-style.md-button > .md-ripple-container {
+        border-radius: 0; }
     md-list-item.md-no-proxy:focus, md-list-item .md-no-style:focus {
       outline: none; }
   md-list-item.md-with-secondary {
@@ -7039,6 +7056,8 @@ md-list-item.md-3-line, md-list-item.md-3-line > .md-no-style {
     margin-top: 4px;
     margin-bottom: 4px;
     height: 1px;
+    min-height: 1px;
+    max-height: 1px;
     width: 100%; }
   .md-open-menu-container md-menu-content > * {
     opacity: 0; }
@@ -7104,6 +7123,7 @@ md-menu-item {
     font-size: 15px;
     text-transform: none;
     font-weight: 400;
+    text-align: left;
     text-align: start;
     height: 100%;
     padding-left: 16px;
@@ -7112,9 +7132,9 @@ md-menu-item {
     -webkit-align-items: baseline;
         -ms-flex-align: baseline;
             align-items: baseline;
-    -webkit-align-content: left;
-        -ms-flex-line-pack: left;
-            align-content: left;
+    -webkit-align-content: flex-start;
+        -ms-flex-line-pack: start;
+            align-content: flex-start;
     width: 100%; }
     md-menu-item > .md-button md-icon {
       margin: auto 16px auto 0; }
@@ -7132,7 +7152,8 @@ md-menu-item {
 
 md-toolbar .md-menu {
   height: auto;
-  margin: auto; }
+  margin: auto;
+  padding: 0; }
 
 @media (max-width: 599px) {
   md-menu-content {
@@ -7220,14 +7241,15 @@ md-menu-content.md-menu-bar-menu.md-dense {
       margin: 0 8px; }
   md-menu-content.md-menu-bar-menu.md-dense md-menu-divider {
     margin: 8px 0; }
+  md-menu-content.md-menu-bar-menu.md-dense md-menu-item > .md-button, md-menu-content.md-menu-bar-menu.md-dense .md-menu > .md-button {
+    text-align: left;
+    text-align: start; }
   md-menu-content.md-menu-bar-menu.md-dense .md-menu {
     padding: 0; }
     md-menu-content.md-menu-bar-menu.md-dense .md-menu > .md-button {
       position: relative;
       margin: 0;
       width: 100%;
-      text-align: left;
-      text-align: start;
       text-transform: none;
       font-weight: normal;
       border-radius: 0px;
@@ -8420,11 +8442,10 @@ md-slider {
   font-weight: 500;
   line-height: 1em;
   margin: 0 0 0 0;
-  margin-right: 16px;
   position: relative; }
   .md-subheader .md-subheader-inner {
     display: block;
-    padding: 16px 0px 16px 16px; }
+    padding: 16px; }
   .md-subheader .md-subheader-content {
     display: block;
     z-index: 1;
@@ -8721,8 +8742,6 @@ md-tab-content {
   left: 0;
   right: 0;
   bottom: 0;
-  -webkit-transform: translateX(0);
-          transform: translateX(0);
   transition: -webkit-transform 0.5s cubic-bezier(0.35, 0, 0.25, 1);
   transition: transform 0.5s cubic-bezier(0.35, 0, 0.25, 1);
   overflow: auto; }

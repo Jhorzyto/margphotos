@@ -1061,7 +1061,13 @@ md-autocomplete {
       position: absolute;
       bottom: -2px;
       left: 0;
-
+      // When `md-inline` is present, we adjust the offset to go over the `ng-message` space
+      &.md-inline {
+        bottom: 40px;
+        right: 2px;
+        left: 2px;
+        width: auto;
+      }
       .md-mode-indeterminate {
         position: absolute;
         top: 0;
@@ -1592,6 +1598,9 @@ button.md-button::-moz-focus-inner {
       height: $button-fab-mini-height;
     }
 
+    &.ng-hide, &.ng-leave {
+      transition: none;
+    }
   }
 
   &:not([disabled]) {
@@ -2261,11 +2270,16 @@ md-calendar {
 $md-datepicker-button-gap: 12px;  // Space between the text input and the calendar-icon button.
 $md-datepicker-border-bottom-gap: 5px;  // Space between input and the grey underline.
 $md-datepicker-open-animation-duration: 0.2s;
+$md-datepicker-triangle-button-width: 36px;
 
 md-datepicker {
   // Don't let linebreaks happen between the open icon-button and the input.
   white-space: nowrap;
   overflow: hidden;
+
+  // Leave room for the down-triangle button to "overflow" it's parent without modifying scrollLeft
+  padding-right: $md-datepicker-triangle-button-width / 2;
+  margin-right: -$md-datepicker-triangle-button-width / 2;
 }
 
 .md-inline-form {
@@ -2396,7 +2410,7 @@ $md-date-arrow-size: 5px;
 // Only apply this high specifiy to the property we need to override.
 .md-datepicker-triangle-button.md-button.md-icon-button {
   height: 100%;
-  width: 36px;
+  width: $md-datepicker-triangle-button-width;
   position: absolute;
 }
 
@@ -3154,12 +3168,22 @@ md-input-container {
     bottom: 7px;
   }
 
+  &.md-input-invalid {
+    ng-messages, data-ng-messages, x-ng-messages,
+    [ng-messages], [data-ng-messages], [x-ng-messages] {
+      opacity: 1;
+    }
+  }
+
   ng-messages, data-ng-messages, x-ng-messages,
   [ng-messages], [data-ng-messages], [x-ng-messages] {
     position: relative;
     order: 4;
     min-height: $input-error-height;
     overflow: hidden;
+    transition: $swift-ease-out;
+    transition-duration: $swift-ease-out-duration / 1.5;
+    opacity: 0;
 
     .md-char-counter {
       position: absolute;
@@ -3354,6 +3378,11 @@ md-list-item {
       white-space: normal;
       flex-direction: inherit;
       align-items: inherit;
+      border-radius: 0;
+
+      & > .md-ripple-container {
+        border-radius: 0;
+      }
     }
     &:focus {
       outline: none
@@ -3578,6 +3607,8 @@ $max-dense-menu-height: 2 * $baseline-grid + $max-visible-items * $dense-menu-it
     margin-top: $baseline-grid / 2;
     margin-bottom: $baseline-grid / 2;
     height: 1px;
+    min-height: 1px;
+    max-height: 1px;
     width: 100%;
   }
 
@@ -3650,13 +3681,14 @@ md-menu-item {
     font-size: (2*$baseline-grid) - 1;
     text-transform: none;
     font-weight: 400;
+    text-align: left;
     text-align: start;
     height: 100%;
     padding-left: 2*$baseline-grid;
     padding-right: 2*$baseline-grid;
     display: inline-block;
     align-items: baseline;
-    align-content: left;
+    align-content: flex-start;
     width:100%;
     md-icon {
       margin: auto 2*$baseline-grid auto 0;
@@ -3683,6 +3715,7 @@ md-toolbar {
   .md-menu {
     height: auto;
     margin: auto;
+    padding: 0;
   }
 }
 
@@ -3773,14 +3806,17 @@ md-menu-content.md-menu-bar-menu.md-dense {
     margin: $baseline-grid 0;
   }
 
+  md-menu-item > .md-button, .md-menu > .md-button {
+    text-align: left;
+    text-align: start;
+  }
+
   .md-menu {
     padding: 0;
     > .md-button {
       position: relative;
       margin: 0;
       width: 100%;
-      text-align: left;
-      text-align: start;
       text-transform: none;
       font-weight: normal;
       border-radius: 0px;
@@ -4950,10 +4986,9 @@ md-slider {
 
 $subheader-line-height: 1em !default;
 $subheader-font-size: rem(1.4) !default;
-$subheader-padding: ($baseline-grid * 2) 0px ($baseline-grid * 2) ($baseline-grid * 2) !default;
+$subheader-padding: ($baseline-grid * 2) !default;
 $subheader-font-weight: 500 !default;
 $subheader-margin: 0 0 0 0 !default;
-$subheader-margin-right: 16px !default;
 $subheader-sticky-shadow: 0px 2px 4px 0 rgba(0,0,0,0.16) !default;
 
 @keyframes subheaderStickyHoverIn {
@@ -5003,7 +5038,6 @@ $subheader-sticky-shadow: 0px 2px 4px 0 rgba(0,0,0,0.16) !default;
   font-weight: $subheader-font-weight;
   line-height: $subheader-line-height;
   margin: $subheader-margin;
-  margin-right: $subheader-margin-right;
   position: relative;
 
   .md-subheader-inner {
@@ -5357,7 +5391,6 @@ md-tab-content {
   left: 0;
   right: 0;
   bottom: 0;
-  transform: translateX(0);
   transition: transform $swift-ease-in-out-duration $swift-ease-in-out-timing-function;
   overflow: auto;
   &.md-no-scroll {
