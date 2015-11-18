@@ -1,7 +1,7 @@
 margPhotos.directive('loadPhoto', function () {
   return {
     restrict: 'A',
-    link: function (scope, element, attrs) {
+    link: function (scope, element) {
       element.bind('load', function () {
         scope.post.imageLoaded.status = true;
       });

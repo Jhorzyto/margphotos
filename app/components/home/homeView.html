@@ -1,9 +1,10 @@
+<!--<div layout="row" layout-wrap>-->
+    <!--<md-subheader flex="grow" class="md-primary">Unread Messages</md-subheader>-->
+<!--</div>-->
+
 <div layout="row" layout-align="space-around center" layout-wrap>
 
-    <md-progress-circular ng-if="!feedData"
-                          class="md-accent" md-mode="indeterminate"></md-progress-circular>
-
-    <md-card ng-repeat="post in feedData | orderBy: '-created_time' track by post.id"
+    <md-card ng-repeat="post in feedData"
              ng-init="initPost( post )"
              flex-gt-md="45" flex-gt-lg="30" flex="100">
 
@@ -53,8 +54,9 @@
 
         <div class="md-actions">
 
-            <p class="infoPhotoText">
-                {{post.caption.text}}
+            <p class="infoPhotoText"
+               ng-click="post.infoPhotoTextBlock = !post.infoPhotoTextBlock">
+                {{post.caption.text | cut: !post.infoPhotoTextBlock: 110 }}
             </p>
 
             <div layout="row" layout-align="start start">
@@ -110,4 +112,12 @@
 
     </md-card>
 
+</div>
+
+<div layout="row" ng-if="!stopScrollFeed || !feedData" layout-align="space-around center" layout-wrap>
+    <div layout="column" layout-align="space-around center">
+        <div flex-grow="true" in-view="$inview && requestPagination()">
+            <md-progress-circular md-diameter="40" class="md-accent" md-mode="indeterminate"></md-progress-circular>
+        </div>
+    </div>
 </div>

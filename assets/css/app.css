@@ -64,11 +64,12 @@ md-content.md-default-theme, md-content{
 }
 
 .infoPhotoText{
-    font-style: italic;
     font-size: 14px;
     text-align: justify;
     display: inline-block;
     word-break: break-all;
+    line-height: 1.5em;
+    margin-bottom: 0;
 }
 
 .md-actions{
