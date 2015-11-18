@@ -39,6 +39,9 @@ index.html
 ./app/app.run.js
 ./app/components/login/loginController.js
 ./app/components/home/homeController.js
+./app/components/core/coreController.js
+./app/app.directive.js
+./bower_components/angular-inview/angular-inview.js
 ./app/shared/navMenu/navMenu.js
 ./app/app.router.js
 ./app/app.theme.js
