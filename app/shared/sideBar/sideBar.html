@@ -1,1 +1,17 @@
-Em construção!
+<md-toolbar class="md-tall md-hue-2 menuToobar">
+    <span flex></span>
+    <div layout="column" class="md-toolbar-tools-bottom inset">
+        <img ng-src="{{userData.data.profile_picture}}" alt="Foto de Perfil" class="avatar">
+        <div class="username-info">
+            {{userData.data.username}}
+        </div>
+    </div>
+</md-toolbar>
+
+<md-list>
+    <md-list-item ng-click="navigateTo(setting.extraScreen, $event)" ng-repeat="item in menu">
+        <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
+        <p> {{item.title}} </p>
+        <md-switch class="md-secondary" ng-model="setting.enabled"></md-switch>
+    </md-list-item>
+</md-list>

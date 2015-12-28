@@ -179,3 +179,11 @@ md-content.md-default-theme, md-content{
     opacity: 0.8;
 }
 
+.menuToobar{
+    background: url("./../img/bg-menu.jpg") no-repeat center;
+}
+
+.username-info {
+    padding-left: 5%;
+    font-size: medium;
+}

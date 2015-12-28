@@ -1,13 +1,10 @@
 <div class="md-toolbar-tools">
 
-    <h3 class="logo">MargPhotos</h3>
+    <h3 class="logo">MargPic</h3>
 
     <span flex></span>
 
-    <md-button ng-if="!userData.login"
-               class="md-icon-button"
-               ng-click="logoff()"
-               aria-label="Logoff">
-        <ng-md-icon icon="logout"></ng-md-icon>
+    <md-button class="md-icon-button" ng-click="openMenu()" ng-hide="isMenuOpen()" aria-label="Menu">
+        <ng-md-icon icon="menu"></ng-md-icon>
     </md-button>
 </div>

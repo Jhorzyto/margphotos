@@ -1,10 +1,22 @@
 margPhotos.directive( 'navMenu', function ( ) {
-    return { restrict: 'A', controller: 'navMenuController', templateUrl: './app/shared/navMenu/navMenu.html' };
+    return {
+        restrict: 'A',
+        controller: 'navMenuController',
+        templateUrl: './app/shared/navMenu/navMenu.html'
+    };
 });
 
 margPhotos.controller( "navMenuController", function ( $scope, $mdSidenav, CoreService ) {
-    $scope.openMenu = function() { $mdSidenav('right').toggle(); };
+
+    $scope.openMenu = function() {
+        $mdSidenav('right').toggle();
+    };
+
     $scope.isLoginPage = CoreService.getUserData().login;
+
+    $scope.isMenuOpen = function(){
+        return $mdSidenav('right').isOpen();
+    };
 
     $scope.logoff = function(){
         CoreService.getInformation({ params: { logoff: true }}, function( response ){
@@ -16,5 +28,4 @@ margPhotos.controller( "navMenuController", function ( $scope, $mdSidenav, CoreS
             CoreService.processResponse( response );
         });
     };
-
 });
