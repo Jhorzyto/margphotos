@@ -14,10 +14,6 @@ margPhotos.controller( "navMenuController", function ( $scope, $mdSidenav, CoreS
 
     $scope.isLoginPage = CoreService.getUserData().login;
 
-    $scope.isMenuOpen = function(){
-        return $mdSidenav('right').isOpen();
-    };
-
     $scope.logoff = function(){
         CoreService.getInformation({ params: { logoff: true }}, function( response ){
             CoreService.processResponse( response, function( data ){
